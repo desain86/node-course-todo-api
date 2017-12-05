@@ -9,8 +9,9 @@ MongoClient.connect(`mongodb://${process.env.IP}:27017/TodoApp`, (err, db) => {
     }
     console.log('connected to MongoDB server!');
     
-    db.collection('Todos').insertOne({
-        text:'Walk the dog',
+    for (var i = 0; i < 2; i++) {
+        db.collection('Todos').insertOne({
+        text:'Eat lunch',
         completed:false
     },(err, result) => {
         if(err){
@@ -18,6 +19,7 @@ MongoClient.connect(`mongodb://${process.env.IP}:27017/TodoApp`, (err, db) => {
         }
         console.log(JSON.stringify(result.ops, undefined, 2));
     });
+    }
     
     db.close();
 });
